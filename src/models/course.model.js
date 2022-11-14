@@ -1,5 +1,6 @@
 const db = require('../utils/database');
 const {DataTypes} = require('sequelize');
+const Category = require('./category.model');
 
 const Course = db.define('courses', {
     id: {
@@ -20,9 +21,13 @@ const Course = db.define('courses', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    category: {
+    categoryId: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        field: 'category_id',
+        references: {
+            model: Category
+        }
     }
 }, {
     timestamps: false

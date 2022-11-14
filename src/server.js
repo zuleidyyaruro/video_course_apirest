@@ -1,5 +1,8 @@
 const app = require('./app');
 const db = require('./utils/database');
+const initModels = require('./models/initModels');
+
+initModels();
 
 db.authenticate()
     .then(() => console.log('Database authenticated'))

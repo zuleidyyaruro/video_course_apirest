@@ -12,6 +12,8 @@ const Category = db.define('categories', {
         type: DataTypes.STRING,
         allowNull: false
     }
+}, {
+    timestamps: false
 })
 
 module.exports = Category;
