@@ -6,11 +6,19 @@ const Video = require('./video.model');
 
 const initModels = () => {
 
-    Category;
-    Course;
-    User;
-    UserCourse;
-    Video;
+    Course.belongsTo(Category);
+    Category.hasMany(Course);
+
+    Video.belongsTo(Course);
+    Course.hasMany(Video);
+
+    // relación de usuarios muchos a muchos con cursos
+    UserCourse.belongsTo(User);
+    User.hasMany(UserCourse);
+
+    UserCourse.belongsTo(Course);
+    Course.hasMany(UserCourse);
+
 }
 
 module.exports = initModels;

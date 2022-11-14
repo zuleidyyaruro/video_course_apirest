@@ -27,8 +27,6 @@ const User = db.define('users', {
         unique: true,
         allowNull: false
     }
-}, {
-    timestamps: false
 })
 
 module.exports = User;
