@@ -6,8 +6,9 @@ const Video = require('./video.model');
 
 const initModels = () => {
 
-    Course.belongsTo(Category);
-    Category.hasMany(Course);
+
+    Category.belongsTo(Course);
+    Course.hasMany(Category);
 
     Video.belongsTo(Course);
     Course.hasMany(Video);

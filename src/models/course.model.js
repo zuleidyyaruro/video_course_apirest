@@ -20,14 +20,6 @@ const Course = db.define('courses', {
     instructor: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    categoryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        field: 'category_id',
-        references: {
-            model: Category
-        }
     }
 }, {
     timestamps: false
