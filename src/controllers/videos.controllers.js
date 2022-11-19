@@ -23,7 +23,7 @@ const deleteVideo = async (req, res, next) => {
         const result = await videosServices.delete(id);
 
         if (result) {
-            res.status(200).json({
+            res.status(201).json({
                 status: 'success',
                 message: 'video deleted successfully'
             })

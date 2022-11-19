@@ -41,12 +41,19 @@ class CoursesServices {
     static async update(id, description) {
         try {
             const course = await Course.findOne({where: {id}});
-            course.update({description});
-            return true;
+            if(course){
+                course.update({description});
+                return true
+            }else {
+                return false
+            }
+
         } catch (error) {
             throw (error);
         }
     }
+
+    static async
 }
 
 module.exports = CoursesServices;

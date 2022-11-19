@@ -48,11 +48,19 @@ const updateCourse = async (req, res, next) => {
     try {
         const {id} = req.params;
         const {description} = req.body;
-        await coursesServices.update(id, description);
-        res.status(201).json({
-            status: 'success',
-            message: 'course updated successfully'
-        })
+        const result = await coursesServices.update(id, description);
+        if (result) {
+            res.status(201).json({
+                status: 'success',
+                message: 'course updated successfully'
+            })
+        } else {
+            next({
+                status: 500,
+                message: 'The id course wasnt found'
+            })
+        }
+
     } catch (error) {
         console.log(error);
     }

@@ -6,12 +6,19 @@ const getUserById = async (req, res, next) => {
     try {
         const {id} = req.params;
         const result = await usersServices.getById(id);
-        res.status(200).json({
-            status: 'success',
-            result
-        })
+        if (result) {
+            res.status(200).json({
+                status: 'success',
+                result
+            })
+        } else {
+            next({
+                status: 500,
+                message: 'The id wasnt found'
+            })
+        }
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 }
 
@@ -20,12 +27,21 @@ const getUserByIdWithCourses = async (req, res, next) => {
     try {
         const {id} = req.params;
         const result = await usersServices.getUserWithCourses(id);
-        res.status(200).json({
-            status: 'success',
-            result
-        })
+
+        if (result) {
+            res.status(200).json({
+                status: 'success',
+                result
+            })
+        } else {
+            next({
+                status: 500,
+                message: 'The id wasnt found'
+            })
+        }
+
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 }
 
@@ -39,7 +55,7 @@ const createNewUser = async (req, res, next) => {
             message: 'Usuario Creado'
         })
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 }
 
@@ -49,12 +65,21 @@ const updateUser = async (req, res, next) => {
         const {id} = req.params;
         const {firstName, lastName, password} = req.body;
         const result = await usersServices.update(id, {firstName, lastName, password});
-        res.status(201).json({
-            status: 'success',
-            message: 'usuario actualizado'
-        })
+
+        if (result) {
+            res.status(201).json({
+                status: 'success',
+                message: 'usuario actualizado'
+            })
+        } else {
+            next({
+                status: 500,
+                message: 'The id user wasnt found'
+            })
+        }
+
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 }
 

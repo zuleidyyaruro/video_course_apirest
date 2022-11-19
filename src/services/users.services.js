@@ -6,11 +6,12 @@ class UsersServices {
 
     static async getById(id) {
         try {
-            return await User.findOne({
+            const result = await User.findOne({
                     where: {id},
                     attributes: ['firstName', 'lastName', 'email']
                 }
             );
+            return !!result;
         } catch (error) {
             throw (error);
         }
@@ -18,7 +19,7 @@ class UsersServices {
 
     static async getUserWithCourses(id) {
         try {
-            return await User.findOne({
+            const result = await User.findOne({
                 where: {id},
                 attributes: ['firstName', 'lastName', 'email'],
                 include: {
@@ -34,6 +35,7 @@ class UsersServices {
                     }
                 }
             })
+            return !!result;
         } catch (error) {
             throw (error);
         }
@@ -57,7 +59,7 @@ class UsersServices {
                 lastName: userData.lastName,
                 password: userData.password
             });
-            return true;
+            return !!user;
         } catch (error) {
             console.log(error);
         }

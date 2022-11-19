@@ -6,7 +6,6 @@ const handleError = (error, req, res, next) => {
         status:'fail',
         message: error.message,
         error:error.error,
-        stack: error.stack,
     })
 }
 
